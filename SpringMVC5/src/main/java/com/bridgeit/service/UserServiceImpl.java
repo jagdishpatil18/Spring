@@ -15,6 +15,7 @@ import com.bridgeit.model.User;
 
 
 @Service
+//@Transactional
 public class UserServiceImpl implements UserServiceIntf   {
 
 	@Autowired
@@ -29,54 +30,16 @@ public class UserServiceImpl implements UserServiceIntf   {
 	}
 
 	@Override
+	@Transactional
 	public List<User> loginUser(String emailid, String password) {
 		return userRegintf.loginUser(emailid, password);
 	//	return obj;
 		
 	}
-
-	@Override
-	public void addEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		 userRegintf.addEmployee(employee);
-	}
-
-	@Override
-	public List<Employee> listEmployee(int uid) {
-		// TODO Auto-generated method stub
-		
-		
-		return userRegintf.listEmployee(uid);
-	}
-
 	@Override
 	public void logoutUser(HttpSession session) {
 		// TODO Auto-generated method stub
 		 userRegintf.logoutUser(session);
 	}
-
-	@Override
-	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		userRegintf.updateEmployee(employee);
-	}
-
-	@Override
-	public List<Employee> getEmployeebyId(int eid) {
-		return userRegintf.getEmployeebyId(eid);
-	}
-
-	@Override
-	public void deleteEmployee(int eid) {
-		// TODO Auto-generated method stub
-		userRegintf.deleteEmployee(eid);
-	}
-
-	
-
-	
-
-		
-		
 
 }

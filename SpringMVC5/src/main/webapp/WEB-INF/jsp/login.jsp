@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>LoginHome</title>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
   <input type="password"   id="form_email"  name="password" placeholder=" enter password">
 <br>
  <input type="submit" value="Login">
- <button formaction="register">Register</button>
+ <button formaction="signup">Register</button>
 </form>
 </body>
 </html>

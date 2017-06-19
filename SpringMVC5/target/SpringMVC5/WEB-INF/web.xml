@@ -1,0 +1,36 @@
+<web-app
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	  <display-name>Archetype Created Web Application</display-name>
+	
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfiglocation</param-name>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>urlfilter</filter-name>
+		<filter-class>com.bridgeit.filter.filterUrl</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>urlfilter</filter-name>
+		<url-pattern>/Registrationpage</url-pattern>
+		<url-pattern>/Employee_Registration</url-pattern>
+		<url-pattern>/EmployeeList</url-pattern>
+		<url-pattern>/update</url-pattern>
+		<url-pattern>/Employee_Update</url-pattern>
+		<url-pattern>/delete</url-pattern>
+		
+	</filter-mapping>
+	
+</web-app>

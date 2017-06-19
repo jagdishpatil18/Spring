@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,20 +28,20 @@ public class UserRegController {
 	@Autowired
 	private UserServiceIntf userserviceint; 
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value={"/","/signup"})
 	public ModelAndView indexPage(HttpServletRequest req, HttpServletResponse resp) 
 	{
-
-			return new ModelAndView("signup");
+			//model.addAttribute();
+			return new ModelAndView("signup", "user", new User());
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView register(@Valid @ModelAttribute("users") User user, BindingResult results){
+	public ModelAndView register(@Valid @ModelAttribute("user")User user, BindingResult results){
 		System.out.println("register method");
 		/*if(user.getPassword().equals("") || user.getEmailid().equals("") ||user.getName().equals("") ){*/
 		if(results.hasErrors()){
 			System.out.println("Password must feel");
-			return new ModelAndView("signup");
+			return new ModelAndView("signup", "user", user);
 		}
 		else{
 		userserviceint.registerUser(user);
@@ -60,7 +61,7 @@ public class UserRegController {
 	public ModelAndView Login(String emailid, String password,HttpServletRequest request,HttpServletResponse response){
 		
 		System.out.println(emailid+"   "+password);
-		userserviceint.loginUser(emailid, password);	
+	//	userserviceint.loginUser(emailid, password);	
 		
 		ModelAndView view=null;
 		
@@ -73,7 +74,7 @@ public class UserRegController {
 		
 		request.getSession().setAttribute("uid",n);*/
 		
-List<User> list=userserviceint.loginUser(emailid,password);
+		List<User> list=userserviceint.loginUser(emailid,password);
 		
 		if(list.size() > 0)
 		{
@@ -99,7 +100,7 @@ List<User> list=userserviceint.loginUser(emailid,password);
 		else{
 	//		return new ModelAndView("signup");
 	
-			view=new ModelAndView("signup");
+			view=new ModelAndView("login");
 			view.addObject("message", "Username/ Password wrong");
 			
 		}
@@ -109,31 +110,11 @@ List<User> list=userserviceint.loginUser(emailid,password);
 	@RequestMapping(value="/Registrationpage")
 	public ModelAndView loginpage(HttpServletRequest request)
 	{
-		int user1=(int) request.getSession().getAttribute("uid");
+		Integer user1=(Integer) request.getSession().getAttribute("uid");
 		String user=(String) request.getSession().getAttribute("email");
 		System.out.println("Login by :"+user);
 		return new ModelAndView("loginUser","emailid",user);
 		
-		
-	}
-	
-	@RequestMapping(value="/Employee_Registration", method=RequestMethod.POST)
-	public ModelAndView addEmployee(HttpServletRequest request,Employee employee)
-	{
-		
-		int uid=(int) request.getSession().getAttribute("uid");
-		System.out.println(uid);
-		employee.setUid(uid);
-		userserviceint.addEmployee(employee);
-		return new ModelAndView("employee");
-	}
-	@RequestMapping(value="/EmployeeList", method=RequestMethod.GET)
-	public ModelAndView listEmployee(HttpServletRequest request, HttpServletResponse response)
-	{
-		int uid=(int) request.getSession().getAttribute("uid");
-		System.out.println("list emp uid :"+uid);
-		List<Employee>emplist=userserviceint.listEmployee(uid);
-		return new ModelAndView("employeelist","employeelist",emplist);
 		
 	}
 	@RequestMapping(value="/logout")
@@ -143,34 +124,6 @@ List<User> list=userserviceint.loginUser(emailid,password);
 		userserviceint.logoutUser(session);
 		return new ModelAndView("redirect:login");
 	
-		
-	}
-	@RequestMapping(value="/update")
-	public ModelAndView updatefor(@RequestParam("id") int eid)
-	{
-		List<Employee> emp=userserviceint.getEmployeebyId(eid);
-		System.out.println("----------------------"+emp.toString());
-		return new ModelAndView("updateEmployee","emprecord",emp );
-	}
-	
-	@RequestMapping(value="/Employee_Update")
-	public ModelAndView updateEmployee(Employee employee,HttpServletRequest request)
-	{
-
-		int uid=(int) request.getSession().getAttribute("uid");
-		System.out.println("update by :"+uid);
-		employee.setUid(uid);
-		userserviceint.updateEmployee(employee);
-		return new ModelAndView("redirect:EmployeeList");
-		
-	}
-	
-	@RequestMapping(value="/delete")
-	public ModelAndView getEmployeeforDelete(@RequestParam("id") int eid)
-	{
-		System.out.println("delete emp :"+eid);
-		userserviceint.deleteEmployee(eid);
-		return new ModelAndView("redirect:EmployeeList");
 		
 	}
 }

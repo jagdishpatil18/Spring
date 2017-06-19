@@ -19,7 +19,7 @@ import com.bridgeit.model.Employee;
 import com.bridgeit.model.User;
 
 @Repository
-@Transactional
+//@Transactional
 public class UserregDaoImpl implements UserRegIntface {
 
 	@Autowired
@@ -61,76 +61,10 @@ public class UserregDaoImpl implements UserRegIntface {
 	}
 
 	@Override
-	public ModelAndView addEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		Session session=sessionFactory.getCurrentSession();
-		try{
-		session.save(employee);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return new ModelAndView("redirect:loginuser");
-		}
-		return null;
-	}
-
-	@Override
-	public List<Employee> listEmployee(int uid) {
-		// TODO Auto-generated method stub
-		Session session = sessionFactory.getCurrentSession();
-		String query="from Employee where uid="+uid;
-		Query query1=session.createQuery(query);
-		//query1.setParameter("uid", uid);
-		List<Employee> list=query1.list();
-		return list;
-	}
-
-	@Override
 	public void logoutUser(HttpSession session) {
 		// TODO Auto-generated method stub
 		session.invalidate();
 	//	return new ModelAndView("redirect:login");
 	}
-
-	@Override
-	public void updateEmployee(Employee employee) {
-		// TODO Auto-generated method stub
-		Session session=sessionFactory.getCurrentSession();
-		try{
-			session.update(employee);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-	}
-
-	@Override
-	public List<Employee> getEmployeebyId(int eid) {
-		Session session=sessionFactory.getCurrentSession();
-		String query="from Employee where eid="+eid;
-		Query query1=session.createQuery(query);
-		//query1.setParameter("uid", uid);
-		List<Employee> list=query1.list();
-		return list;
-		
-	}
-
-	@Override
-	public void deleteEmployee(int eid) {
-		Session session=sessionFactory.getCurrentSession();
-		try{
-		String query="Delete from Employee where eid="+eid;
-		Query query1=session.createQuery(query);
-		query1.executeUpdate();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	}
-
-	
 	
 }
