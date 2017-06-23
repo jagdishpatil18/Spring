@@ -1,0 +1,4 @@
+com/bridgeit/configuration/HelloConfiguration.class
+com/bridgeit/model/Message.class
+com/bridgeit/configuration/HelloInitializer.class
+com/bridgeit/controller/HelloController.class

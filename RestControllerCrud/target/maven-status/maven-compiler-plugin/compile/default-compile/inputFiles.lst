@@ -1,0 +1,5 @@
+/home/bridgeit/Spring_Core & Maven/RestControllerCrud/src/main/java/com/bridgeit/restdemo/model/Customer.java
+/home/bridgeit/Spring_Core & Maven/RestControllerCrud/src/main/java/com/bridgeit/restdemo/dao/CustomerDao.java
+/home/bridgeit/Spring_Core & Maven/RestControllerCrud/src/main/java/com/bridgeit/restdemo/controller/CustomerController.java
+/home/bridgeit/Spring_Core & Maven/RestControllerCrud/src/main/java/com/bridgeit/restdemo/configuration/Appconfig.java
+/home/bridgeit/Spring_Core & Maven/RestControllerCrud/src/main/java/com/bridgeit/restdemo/configuration/DispatcherIntializer.java

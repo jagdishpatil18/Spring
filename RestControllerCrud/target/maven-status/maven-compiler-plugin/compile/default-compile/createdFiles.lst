@@ -1,0 +1,5 @@
+com/bridgeit/restdemo/configuration/Appconfig.class
+com/bridgeit/restdemo/configuration/DispatcherIntializer.class
+com/bridgeit/restdemo/controller/CustomerController.class
+com/bridgeit/restdemo/model/Customer.class
+com/bridgeit/restdemo/dao/CustomerDao.class
